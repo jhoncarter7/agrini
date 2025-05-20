@@ -31,7 +31,7 @@ export default {
 				foreground: 'hsl(var(--foreground))',
 				// AgriHub custom colors
 				'agri-green': {
-					light: '#6FCF7A',
+					light: '#00000',
 					DEFAULT: '#4CAF50',
 					dark: '#2E7D32',
 				},
