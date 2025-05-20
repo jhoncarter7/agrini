@@ -21,7 +21,7 @@ export function Contact() {
       const data = new FormData(formRef.current!);
       const templateParams = {
         to_name:   'Agriniri Evergreen',
-        to_email:  'heroamerican498@gmail.com',
+        to_email:  '15singh.aman@gmail.com',
         user_name: data.get('user_name'),
         user_email:data.get('user_email'),
         subject:   data.get('subject'),
