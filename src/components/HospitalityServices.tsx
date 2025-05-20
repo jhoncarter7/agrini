@@ -67,23 +67,7 @@ export function HospitalityServices() {
             </Card>
           ))}
         </div>
-        
-        {/* CTA Section */}
-        <div className="mt-16 text-center bg-white p-8 rounded-xl shadow-sm border border-gray-100 max-w-4xl mx-auto">
-          <h3 className="text-2xl font-semibold mb-4">Ready to transform your procurement?</h3>
-          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Join hundreds of hospitality businesses that trust us for consistent, 
-            high-quality produce delivery.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Button className="bg-agri-green hover:bg-agri-green-dark text-white font-medium rounded-md">
-              Schedule a Consultation
-            </Button>
-            <Button variant="outline" className="border-agri-green text-agri-green hover:bg-agri-green/10 font-medium rounded-md">
-              View Sample Products
-            </Button>
-          </div>
-        </div>
+   
       </div>
     </section>
   );

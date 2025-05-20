@@ -73,6 +73,22 @@ export function Footer() {
                   <span>123 Green Avenue, Tech Park<br />Bangalore, Karnataka 560001</span>
                 </div>
               </div>
+              
+              {/* Social Media Icons - Moved here */}
+              <div className="flex gap-4 mb-8">
+                <a href="#" className="bg-gray-800 hover:bg-emerald-500 text-white p-2 rounded-full transition-colors">
+                  <Facebook className="h-5 w-5" />
+                </a>
+                <a href="#" className="bg-gray-800 hover:bg-emerald-500 text-white p-2 rounded-full transition-colors">
+                  <Instagram className="h-5 w-5" />
+                </a>
+                <a href="#" className="bg-gray-800 hover:bg-emerald-500 text-white p-2 rounded-full transition-colors">
+                  <Twitter className="h-5 w-5" />
+                </a>
+                <a href="#" className="bg-gray-800 hover:bg-emerald-500 text-white p-2 rounded-full transition-colors">
+                  <Linkedin className="h-5 w-5" />
+                </a>
+              </div>
             </div>
             
             <div className="md:col-span-3 md:col-start-7">
@@ -95,32 +111,6 @@ export function Footer() {
                 </a></li>
               </ul>
             </div>
-            
-            {/* <div className="md:col-span-4">
-              <h3 className="text-lg font-semibold mb-6 text-white">Newsletter</h3>
-              <p className="text-gray-400 mb-6">
-                Subscribe to our newsletter to receive updates on new features, industry insights, and special offers.
-              </p>
-              
-              <form onSubmit={handleSubscribe} className="space-y-3">
-                <div className="relative">
-                  <Input
-                    type="email"
-                    placeholder="Your email address"
-                    className="bg-gray-800 border-gray-700 focus-visible:ring-emerald-500 focus-visible:border-emerald-500 text-white placeholder:text-gray-500 pl-4 pr-4 py-3 rounded-lg"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                  />
-                </div>
-                <Button 
-                  type="submit" 
-                  className="w-full bg-emerald-500 hover:bg-emerald-600 text-white transition-colors"
-                >
-                  Subscribe
-                </Button>
-              </form>
-            </div> */}
           </div>
           
           <div className="border-t border-gray-800 pt-8 mt-10 flex flex-col md:flex-row justify-between items-center">
@@ -128,20 +118,7 @@ export function Footer() {
               &copy; {new Date().getFullYear()} Agriniri Evergreen Private Limited. All rights reserved.
             </p>
             
-            <div className="flex gap-4 order-1 md:order-2">
-              <a href="#" className="bg-gray-800 hover:bg-emerald-500 text-white p-2 rounded-full transition-colors">
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a href="#" className="bg-gray-800 hover:bg-emerald-500 text-white p-2 rounded-full transition-colors">
-                <Instagram className="h-5 w-5" />
-              </a>
-              <a href="#" className="bg-gray-800 hover:bg-emerald-500 text-white p-2 rounded-full transition-colors">
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a href="#" className="bg-gray-800 hover:bg-emerald-500 text-white p-2 rounded-full transition-colors">
-                <Linkedin className="h-5 w-5" />
-              </a>
-            </div>
+            {/* Removed social media icons from here */}
           </div>
         </div>
       </div>

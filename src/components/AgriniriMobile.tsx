@@ -127,7 +127,7 @@ export function AgriniriMobile() {
                 </Button>
               </div>
               
-              <div className="mt-12 flex gap-8">
+              {/* <div className="mt-12 flex gap-8">
                 <div className="text-center">
                   <div className="text-3xl font-bold text-white mb-1">10k+</div>
                   <div className="text-white/70 text-sm">Farmers</div>
@@ -140,7 +140,7 @@ export function AgriniriMobile() {
                   <div className="text-3xl font-bold text-white mb-1">30%</div>
                   <div className="text-white/70 text-sm">Less Waste</div>
                 </div>
-              </div>
+              </div> */}
             </div>
             
             <div className={cn(
@@ -364,7 +364,7 @@ export function AgriniriMobile() {
         </div>
 
         {/* Testimonial Section */}
-        <div className="mb-24">
+        {/* <div className="mb-24">
           <div className="text-center mb-12">
             <span className="inline-block px-4 py-1.5 rounded-full text-sm font-medium tracking-wide bg-emerald-100 text-emerald-800 mb-4">
               USER STORIES
@@ -423,7 +423,7 @@ export function AgriniriMobile() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* CTA Section */}
         <div className={cn(

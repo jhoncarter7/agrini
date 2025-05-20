@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Menu, X, Search, Bell, User } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [showSearch, setShowSearch] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -18,6 +17,11 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    // Close mobile menu when route changes
+    closeMenu();
+  }, [location.pathname]);
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -26,45 +30,40 @@ export function Navbar() {
     setIsMenuOpen(false);
   };
 
-  const toggleSearch = () => {
-    setShowSearch(!showSearch);
-  };
-
   const isActive = (path: string) => {
     return location.pathname === path;
   };
 
   return (
-    <nav className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-      isScrolled 
-        ? 'bg-white/90 backdrop-blur-md shadow-md py-2' 
-        : 'bg-white/80 backdrop-blur-sm shadow-sm py-3'
-    }`}>
+    <nav className={isScrolled 
+      ? "fixed top-0 inset-x-0 z-50 transition-all duration-300 bg-white/90 backdrop-blur-md shadow-md py-2" 
+      : "fixed top-0 inset-x-0 z-50 transition-all duration-300 bg-white/80 backdrop-blur-sm shadow-sm py-3"
+    }>
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center">
-          <a href="/" className="flex items-center gap-2 group">
+          <Link to="/" className="flex items-center gap-2 group">
             <img 
               src="/images/logo.png" 
               alt="Agriniri Evergreen Logo" 
-              className="h-12 transition-transform duration-300 group-hover:scale-105" 
+              className="h-10 md:h-12 transition-transform duration-300 group-hover:scale-105" 
             />
             <span className="text-agri-green text-sm font-medium hidden lg:block group-hover:text-agri-green/80 transition-colors">
               Agriniri
             </span>
-          </a>
+          </Link>
         </div>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-6">
-          <a 
-            href="/" 
+          <Link 
+            to="/" 
             className={`relative text-foreground hover:text-agri-green transition-colors px-2 py-1 ${
               isActive('/') ? 'text-agri-green font-medium' : ''
             }`}
           >
             Home
             {isActive('/') && <span className="absolute bottom-0 left-0 w-full h-0.5 bg-agri-green rounded-full" />}
-          </a>
+          </Link>
           
           <Link 
             to="/services" 
@@ -107,43 +106,8 @@ export function Navbar() {
           </Link>
         </div>
 
-        {/* Desktop Actions */}
-        <div className="hidden md:flex items-center gap-3">
-          <Button 
-            variant="ghost" 
-            size="icon"
-            onClick={toggleSearch}
-            className="text-gray-600 hover:text-agri-green transition-colors"
-            aria-label="Search"
-          >
-            <Search size={20} />
-          </Button>
-          
-          <Button 
-            variant="ghost" 
-            size="icon"
-            className="text-gray-600 hover:text-agri-green transition-colors relative"
-            aria-label="Notifications"
-          >
-            <Bell size={20} />
-            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
-              2
-            </span>
-          </Button>
-        </div>
-
         {/* Mobile Menu Button */}
-        <div className="md:hidden flex items-center gap-2">
-          <Button 
-            variant="ghost" 
-            size="icon"
-            onClick={toggleSearch}
-            className="text-gray-600"
-            aria-label="Search"
-          >
-            <Search size={20} />
-          </Button>
-          
+        <div className="md:hidden flex items-center">
           <Button 
             variant="ghost" 
             size="icon"
@@ -156,45 +120,22 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Search Bar (conditionally shown) */}
-      {showSearch && (
-        <div className="absolute top-full left-0 right-0 bg-white shadow-md p-3 border-t border-gray-100 animate-in fade-in slide-in-from-top-2 duration-200">
-          <div className="container mx-auto">
-            <div className="relative">
-              <input 
-                type="text" 
-                placeholder="Search for resources, products, or topics..." 
-                className="w-full py-2 pl-4 pr-10 rounded-lg border border-gray-200 focus:border-agri-green focus:ring-1 focus:ring-agri-green focus:outline-none"
-                autoFocus
-              />
-              <Button 
-                variant="ghost" 
-                size="icon" 
-                className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-agri-green"
-              >
-                <Search size={18} />
-              </Button>
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden fixed inset-0 top-[57px] bg-white/95 z-40 animate-in fade-in slide-in-from-right duration-300">
-          <div className="container mx-auto py-8 flex flex-col gap-6">
-            <a 
-              href="/" 
-              className={`text-xl font-medium flex items-center ${isActive('/') ? 'text-agri-green' : 'text-foreground'} hover:text-agri-green transition-colors`}
+        <div className="md:hidden fixed inset-0 top-[57px] bg-white z-50 pb-[22rem]">
+          <div className="container mx-auto py-6 flex flex-col gap-5">
+            <Link 
+              to="/" 
+              className={`text-lg font-medium flex items-center ${isActive('/') ? 'text-agri-green' : 'text-foreground'} hover:text-agri-green transition-colors`}
               onClick={closeMenu}
             >
               Home
               {isActive('/') && <span className="ml-2 w-2 h-2 rounded-full bg-agri-green" />}
-            </a>
+            </Link>
             
-            <Link
+            <Link 
               to="/services" 
-              className={`text-xl font-medium flex items-center ${isActive('/services') ? 'text-agri-green' : 'text-foreground'} hover:text-agri-green transition-colors`}
+              className={`text-lg font-medium flex items-center ${isActive('/services') ? 'text-agri-green' : 'text-foreground'} hover:text-agri-green transition-colors`}
               onClick={closeMenu}
             >
               Services
@@ -203,7 +144,7 @@ export function Navbar() {
             
             <Link
               to="/how-it-works" 
-              className={`text-xl font-medium flex items-center ${isActive('/how-it-works') ? 'text-agri-green' : 'text-foreground'} hover:text-agri-green transition-colors`}
+              className={`text-lg font-medium flex items-center ${isActive('/how-it-works') ? 'text-agri-green' : 'text-foreground'} hover:text-agri-green transition-colors`}
               onClick={closeMenu}
             >
               How It Works
@@ -212,7 +153,7 @@ export function Navbar() {
             
             <Link
               to="/about-us" 
-              className={`text-xl font-medium flex items-center ${isActive('/about-us') ? 'text-agri-green' : 'text-foreground'} hover:text-agri-green transition-colors`}
+              className={`text-lg font-medium flex items-center ${isActive('/about-us') ? 'text-agri-green' : 'text-foreground'} hover:text-agri-green transition-colors`}
               onClick={closeMenu}
             >
               About Us
@@ -221,19 +162,31 @@ export function Navbar() {
             
             <Link
               to="/contact" 
-              className={`text-xl font-medium flex items-center ${isActive('/contact') ? 'text-agri-green' : 'text-foreground'} hover:text-agri-green transition-colors`}
+              className={`text-lg font-medium flex items-center ${isActive('/contact') ? 'text-agri-green' : 'text-foreground'} hover:text-agri-green transition-colors`}
               onClick={closeMenu}
             >
               Contact
               {isActive('/contact') && <span className="ml-2 w-2 h-2 rounded-full bg-agri-green" />}
             </Link>
-
-            <div className="pt-4 border-t border-gray-100">
-              {/* Removed Sign In button */}
-            </div>
           </div>
         </div>
       )}
+
+      {/* Mobile Bottom Nav */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 py-2 px-4 flex justify-around z-40 shadow-md">
+        <Link to="/" className={`flex flex-col items-center ${isActive('/') ? 'text-agri-green' : 'text-gray-600'}`}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          <span className="text-xs mt-1">Home</span>
+        </Link>
+        
+        <button onClick={toggleMenu} className={`flex flex-col items-center ${isMenuOpen ? 'text-agri-green' : 'text-gray-600'}`}>
+          {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          <span className="text-xs mt-1">Menu</span>
+        </button>
+      </div>
     </nav>
   );
 }

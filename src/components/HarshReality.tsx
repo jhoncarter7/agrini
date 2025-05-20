@@ -169,12 +169,12 @@ export function HarshReality() {
                 className="h-[500px] bg-cover bg-center rounded-2xl relative"
                 style={{
                   backgroundImage: activeItem === 0 
-                    ? "url('https://images.unsplash.com/photo-1573743338941-39db12ef9b64?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')" 
+                    ? "url('/images/mayhem.jpeg')" 
                     : activeItem === 1
-                    ? "url('https://images.unsplash.com/photo-1534723452862-4c874018d66d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')"
+                    ? "url('/images/mandi.webp')"
                     : activeItem === 2
-                    ? "url('https://images.unsplash.com/photo-1579113800032-c38bd7635818?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')"
-                    : "url('https://images.unsplash.com/photo-1562440499-64c9a111f713?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')"
+                    ? "url('images/wasteveg.webp')"
+                    : "url('/images/technology.jpeg')"
                 }}
               >
                 {/* Overlay Gradient */}
@@ -190,12 +190,7 @@ export function HarshReality() {
                 
                 {/* Content */}
                 <div className="absolute inset-0 flex flex-col justify-end p-8">
-                  <div 
-                    className="inline-block px-4 py-2 rounded-full text-xs font-medium tracking-wide text-white mb-4 w-fit"
-                    style={{ backgroundColor: items[activeItem].color }}
-                  >
-                    Problem {activeItem + 1}
-                  </div>
+                 
                   <h3 className="text-3xl md:text-4xl font-bold text-white mb-3">
                     {items[activeItem].title}
                   </h3>
@@ -215,10 +210,7 @@ export function HarshReality() {
                         }}
                       ></div>
                     </div>
-                    <div className="flex justify-between mt-2 text-sm text-white/60">
-                      <span>Problem 1</span>
-                      <span>Problem {items.length}</span>
-                    </div>
+                   
                   </div>
                 </div>
               </div>
